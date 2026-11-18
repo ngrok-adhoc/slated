@@ -14,10 +14,10 @@
 	"sideEffects": false,
 	"scripts": {
 		"setup:env": "node scripts/setup-env.mjs",
-		"dev": "react-router dev",
-		"demo": "SLATED_DEMO=1 react-router dev --port 3100",
+		"dev": "app-server start",
+		"demo": "SLATED_DEMO=1 app-server start --port 3100",
 		"build": "react-router build",
-		"start": "react-router-serve ./build/server/index.js",
+		"start": "app-server serve",
 		"typecheck": "react-router typegen && tsc",
 		"test": "vitest run",
 		"test:watch": "vitest",
@@ -28,21 +28,22 @@
 		"@dnd-kit/core": "6.3.1",
 		"@dnd-kit/utilities": "3.2.2",
 		"@linear/sdk": "87.0.0",
+		"@ngrok/app-server": "0.5.2",
 		"@ngrok/mantle": "0.93.7",
 		"@phosphor-icons/react": "2.1.10",
-		"@react-router/node": "7.18.0",
-		"@react-router/serve": "7.18.0",
+		"@react-router/node": "8.5.1",
 		"@tanstack/react-query": "5.101.1",
 		"date-fns": "4.4.0",
 		"dotenv": "17.4.2",
+		"hono": "4.13.19",
 		"isbot": "5.1.44",
 		"react": "19.2.7",
 		"react-dom": "19.2.7",
-		"react-router": "7.18.0"
+		"react-router": "8.5.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.1",
-		"@react-router/dev": "7.18.0",
+		"@react-router/dev": "8.5.1",
 		"@tailwindcss/vite": "4.3.3",
 		"@testing-library/jest-dom": "6.9.1",
 		"@testing-library/react": "16.3.2",
@@ -54,11 +55,11 @@
 		"jsdom": "29.1.1",
 		"tailwindcss": "4.3.3",
 		"typescript": "6.0.3",
-		"vite": "8.1.0",
+		"vite": "8.3.8",
 		"vitest": "4.1.9"
 	},
 	"engines": {
-		"node": ">=20"
+		"node": ">=26"
 	},
 	"packageManager": "pnpm@10.33.4+sha512.1c67b3b359b2d408119ba1ed289f34b8fc3c6873412bec6fd264fbdc82489e510fcbecb9ce9d22dae7f3b76269d8441046014bdca53b9979cd7a561ad631b800"
 }

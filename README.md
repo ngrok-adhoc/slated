@@ -75,7 +75,7 @@ issues, sub-tasks, and projects, and switches the theme.
 
 ## Quickstart
 
-You need [Node](https://nodejs.org) 20 or newer,
+You need [Node](https://nodejs.org) 26 or newer,
 [pnpm](https://pnpm.io/installation), and a personal Linear API key from
 [linear.app/settings/api](https://linear.app/settings/api).
 

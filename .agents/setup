@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Prepares an Amp orb: the Node version CI and the Dockerfile pin, pnpm through
-# corepack (pinned by package.json's "packageManager"), and dependencies.
+# Prepares an Amp orb: the Node version CI and the Dockerfile pin, the pnpm
+# version package.json's "packageManager" pins, and dependencies.
 set -euo pipefail
 
 # Keep in step with .github/workflows/ci.yml and the Dockerfile.
-NODE_VERSION=22.23.4
+NODE_VERSION=26.13.1
 
 step() {
 	echo "==> $1"
@@ -38,16 +38,20 @@ if [ ! -x "$node_dir/bin/node" ]; then
 	tar -xJf "$tmp/${node_name}.tar.xz" -C "$(dirname "$node_dir")"
 fi
 mkdir -p "$bin_dir"
-for tool in node npm npx corepack; do
+for tool in node npm npx; do
 	ln -sfn "$node_dir/bin/$tool" "$bin_dir/$tool"
 done
 export PATH="$bin_dir:$PATH"
 node --version
 done_step
 
-step "pnpm via corepack"
-export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-corepack enable --install-directory "$bin_dir" pnpm
+# Node 25+ ships no corepack, so install pnpm with npm, into this Node.
+step "pnpm"
+pnpm_version="$(node -p 'require("./package.json").packageManager.split("@")[1].split("+")[0]')"
+if [ "$("$node_dir/bin/pnpm" --version 2>/dev/null)" != "$pnpm_version" ]; then
+	npm install --global "pnpm@${pnpm_version}"
+fi
+ln -sfn "$node_dir/bin/pnpm" "$bin_dir/pnpm"
 pnpm --version
 done_step
 

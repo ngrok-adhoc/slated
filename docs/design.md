@@ -42,7 +42,7 @@ Each issue card shows:
 Follows ngrok frontend conventions (`@ngrok/mantle`, React Router 7, TanStack
 Query, Tailwind + CVA, Vitest + Testing Library).
 
-- **React Router 7 (framework mode)** — gives us a Node server for the OAuth
+- **React Router 8 (framework mode) on `@ngrok/app-server`** — gives us a Node server for the OAuth
   token exchange and the Linear BFF proxy. Standalone app in this repo,
   consuming `@ngrok/mantle`.
 - **`@ngrok/mantle`** — UI components, design tokens, `cx`. No raw Tailwind
