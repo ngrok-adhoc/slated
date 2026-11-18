@@ -12,6 +12,9 @@ export default defineConfig({
 		environment: "jsdom",
 		globals: true,
 		setupFiles: ["./vitest.setup.ts"],
+		// Node 25+ defines a global `localStorage` that is undefined without
+		// `--localstorage-file`, and it hides jsdom's. Turn it off.
+		execArgv: ["--no-webstorage"],
 		include: ["app/**/*.test.{ts,tsx}"],
 		// Route tests import server modules, which read (and validate) the
 		// environment on load. Supply a throwaway one so the suite passes with no

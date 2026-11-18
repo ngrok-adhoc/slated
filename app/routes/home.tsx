@@ -13,7 +13,7 @@ const TITLE = "Slated: content calendar for Linear";
 const DESCRIPTION =
 	"Everything your team has slated to ship, on one calendar. Slated reads your Linear issues live and places them by due date.";
 
-export function meta({ data: loaded }: Route.MetaArgs) {
+export function meta({ loaderData: loaded }: Route.MetaArgs) {
 	// Link unfurlers (Slack, iMessage, X) need an absolute og:image; a relative
 	// one is widely ignored. The origin comes from the loader rather than an env
 	// var so the card works on localhost and on any host this is deployed to.
